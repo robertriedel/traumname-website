@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Traumname — Babynamen als Paar finden</title>
+  <meta name="description" content="Swipe durch Babynamen, entdecke gemeinsame Favoriten als Paar. Kostenlos für iOS.">
+  <meta name="apple-itunes-app" content="app-id=YOUR_APP_ID">
+  <link rel="canonical" href="https://traumname.com">
+  <meta property="og:title" content="Traumname — Babynamen als Paar finden">
+  <meta property="og:description" content="Ihr erwartet ein Baby und könnt euch nicht auf einen Namen einigen? Traumname macht die Namenssuche zum gemeinsamen Erlebnis.">
+  <meta property="og:url" content="https://traumname.com">
+  <meta property="og:type" content="website">
+  <meta property="og:image" content="https://traumname.com/og-image.png">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>📖</text></svg>">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    :root {
+      --primary: #894c0e;
+      --primary-light: #feac67;
+      --bg: #fffbf5;
+      --text: #3e2c1a;
+      --text-light: #8a7460;
+      --card: #ffffff;
+      --radius: 1.5rem;
+    }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+    a { color: var(--primary); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+
+    /* Nav */
+    .nav {
+      position: fixed; top: 0; width: 100%; z-index: 50;
+      background: rgba(255, 251, 245, 0.85);
+      backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
+      border-bottom: 1px solid rgba(137, 76, 14, 0.08);
+    }
+    .nav-inner {
+      max-width: 960px; margin: 0 auto;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 1rem 1.5rem;
+    }
+    .nav-brand {
+      font-size: 1.25rem; font-weight: 800;
+      background: linear-gradient(135deg, #894c0e, #feac67);
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    .nav-links { display: flex; gap: 1.5rem; font-size: 0.875rem; font-weight: 500; }
+    .nav-links a { color: var(--text-light); }
+    .nav-links a:hover { color: var(--primary); text-decoration: none; }
+
+    /* Hero */
+    .hero {
+      padding: 8rem 1.5rem 4rem;
+      text-align: center;
+      max-width: 720px; margin: 0 auto;
+    }
+    .hero h1 {
+      font-size: clamp(2.5rem, 6vw, 3.5rem);
+      font-weight: 800;
+      line-height: 1.15;
+      margin-bottom: 1.25rem;
+      background: linear-gradient(135deg, #894c0e 30%, #feac67);
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    .hero p {
+      font-size: 1.2rem;
+      color: var(--text-light);
+      max-width: 520px;
+      margin: 0 auto 2.5rem;
+    }
+    .badge-link img { height: 54px; border-radius: 12px; }
+
+    /* Features */
+    .features {
+      max-width: 960px; margin: 0 auto;
+      padding: 4rem 1.5rem;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 1.5rem;
+    }
+    .feature-card {
+      background: var(--card);
+      border-radius: var(--radius);
+      padding: 2rem;
+      box-shadow: 0 1px 3px rgba(62, 44, 26, 0.06);
+    }
+    .feature-icon {
+      width: 48px; height: 48px;
+      background: linear-gradient(135deg, #894c0e, #feac67);
+      border-radius: 14px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.5rem; margin-bottom: 1rem;
+      color: white;
+    }
+    .feature-card h3 { font-size: 1.1rem; font-weight: 700; margin-bottom: 0.5rem; }
+    .feature-card p { font-size: 0.9rem; color: var(--text-light); line-height: 1.55; }
+
+    /* How it works */
+    .how-section {
+      max-width: 720px; margin: 0 auto;
+      padding: 3rem 1.5rem 4rem;
+      text-align: center;
+    }
+    .how-section h2 {
+      font-size: 2rem; font-weight: 800; margin-bottom: 2.5rem;
+      color: var(--primary);
+    }
+    .steps { display: flex; flex-direction: column; gap: 2rem; text-align: left; }
+    .step {
+      display: flex; gap: 1.25rem; align-items: flex-start;
+    }
+    .step-num {
+      width: 40px; height: 40px; border-radius: 50%; flex-shrink: 0;
+      background: linear-gradient(135deg, #894c0e, #feac67);
+      color: white; font-weight: 800; font-size: 1.1rem;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .step h3 { font-weight: 700; margin-bottom: 0.25rem; }
+    .step p { font-size: 0.9rem; color: var(--text-light); }
+
+    /* CTA */
+    .cta {
+      text-align: center;
+      padding: 4rem 1.5rem;
+      background: linear-gradient(180deg, transparent, rgba(137, 76, 14, 0.04));
+    }
+    .cta h2 { font-size: 1.75rem; font-weight: 800; color: var(--primary); margin-bottom: 0.75rem; }
+    .cta p { color: var(--text-light); margin-bottom: 2rem; }
+
+    /* Footer */
+    .footer {
+      max-width: 960px; margin: 0 auto;
+      padding: 2rem 1.5rem;
+      border-top: 1px solid rgba(137, 76, 14, 0.08);
+      display: flex; justify-content: space-between; align-items: center;
+      flex-wrap: wrap; gap: 1rem;
+      font-size: 0.8rem; color: var(--text-light);
+    }
+    .footer-links { display: flex; gap: 1.5rem; }
+    .footer-links a { color: var(--text-light); }
+
+    @media (max-width: 640px) {
+      .nav-links { gap: 1rem; }
+      .features { grid-template-columns: 1fr; }
+      .footer { flex-direction: column; text-align: center; }
+    }
+  </style>
+</head>
+<body>
+
+  <nav class="nav">
+    <div class="nav-inner">
+      <span class="nav-brand">Traumname</span>
+      <div class="nav-links">
+        <a href="/privacy">Datenschutz</a>
+        <a href="/support">Support</a>
+      </div>
+    </div>
+  </nav>
+
+  <section class="hero">
+    <h1>Findet den Babynamen, den ihr beide liebt</h1>
+    <p>Swipe durch handverlesene Babynamen, entdecke gemeinsame Favoriten als Paar &mdash; ohne endlose Diskussionen.</p>
+    <a class="badge-link" href="https://apps.apple.com/app/idYOUR_APP_ID" target="_blank" rel="noopener">
+      <img src="https://tools.applemediaservices.com/api/badges/download-on-the-app-store/black/de-de?size=250x83" alt="Im App Store laden">
+    </a>
+  </section>
+
+  <section class="features">
+    <div class="feature-card">
+      <div class="feature-icon">&#x1F9E0;</div>
+      <h3>Smarter Geschmackstest</h3>
+      <p>In wenigen Schritten lernt die App euren Namensstil kennen: Klassisch oder modern? Nordisch oder romanisch?</p>
+    </div>
+    <div class="feature-card">
+      <div class="feature-icon">&#x1F91D;</div>
+      <h3>Gemeinsam entscheiden</h3>
+      <p>Jeder swiped unabh&auml;ngig. Wenn ihr beide den gleichen Namen liked, erscheint er als Match.</p>
+    </div>
+    <div class="feature-card">
+      <div class="feature-icon">&#x1F30D;</div>
+      <h3>1.400+ Namen, 21 Herkunftsl&auml;nder</h3>
+      <p>Von deutsch &uuml;ber franz&ouml;sisch bis japanisch &mdash; handverlesen und mit Bedeutung.</p>
+    </div>
+  </section>
+
+  <section class="how-section">
+    <h2>So funktioniert's</h2>
+    <div class="steps">
+      <div class="step">
+        <div class="step-num">1</div>
+        <div>
+          <h3>Geschmackstest machen</h3>
+          <p>Ein kurzer Test lernt euren pers&ouml;nlichen Namensstil kennen und sortiert die Namen f&uuml;r euch.</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">2</div>
+        <div>
+          <h3>Namen swipen</h3>
+          <p>Entdeckt &uuml;ber 1.400 Babynamen, intelligent sortiert nach eurem Geschmack. Jeder Swipe verfeinert die Empfehlungen.</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">3</div>
+        <div>
+          <h3>Matches finden</h3>
+          <p>Wenn ihr beide den gleichen Namen liked, erscheint er als Match. So findet ihr euren Traumname.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="cta">
+    <h2>Bereit f&uuml;r euren Traumname?</h2>
+    <p>Kostenlos. Keine Werbung. Keine versteckten Kosten.</p>
+    <a class="badge-link" href="https://apps.apple.com/app/idYOUR_APP_ID" target="_blank" rel="noopener">
+      <img src="https://tools.applemediaservices.com/api/badges/download-on-the-app-store/black/de-de?size=250x83" alt="Im App Store laden">
+    </a>
+  </section>
+
+  <footer class="footer">
+    <span>&copy; 2026 Traumname. Alle Rechte vorbehalten.</span>
+    <div class="footer-links">
+      <a href="/privacy">Datenschutz</a>
+      <a href="/support">Support</a>
+      <a href="/terms">Nutzungsbedingungen</a>
+    </div>
+  </footer>
+
+</body>
+</html>
