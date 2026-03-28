@@ -6,6 +6,8 @@
   <title>Privacy Policy — Traumname</title>
   <meta name="description" content="Privacy policy of the Traumname app">
   <link rel="canonical" href="https://traumname.com/privacy">
+  <link rel="alternate" hreflang="de" href="https://traumname.com/de/privacy/">
+  <link rel="alternate" hreflang="en" href="https://traumname.com/privacy/">
   <style>
     * { margin: 0; padding: 0; box-sizing: border-box; }
     :root { --primary: #894c0e; --bg: #fffbf5; --text: #3e2c1a; --text-light: #8a7460; }
@@ -27,6 +29,16 @@
       padding: 1rem 1.5rem;
     }
     .nav-brand { font-size: 1.25rem; font-weight: 800; color: var(--primary); text-decoration: none; }
+    .nav-links { display: flex; align-items: center; gap: 1.5rem; font-size: 0.875rem; font-weight: 500; }
+    .nav-links a { color: var(--text-light); text-decoration: none; }
+    .nav-links a:hover { color: var(--primary); }
+    .lang-switch {
+      display: inline-flex; align-items: center; gap: 0.35rem;
+      padding: 0.3rem 0.65rem; border-radius: 0.5rem;
+      background: rgba(137, 76, 14, 0.08); font-size: 0.8rem; font-weight: 600;
+      color: var(--primary); text-decoration: none;
+    }
+    .lang-switch:hover { background: rgba(137, 76, 14, 0.14); text-decoration: none; }
     .content { max-width: 720px; margin: 0 auto; padding: 6rem 1.5rem 4rem; }
     h1 { font-size: 2rem; font-weight: 800; color: var(--primary); margin-bottom: 0.5rem; }
     .date { font-size: 0.85rem; color: var(--text-light); margin-bottom: 2.5rem; }
@@ -48,6 +60,11 @@
   <nav class="nav">
     <div class="nav-inner">
       <a href="/" class="nav-brand">Traumname</a>
+      <div class="nav-links">
+        <a href="/privacy">Privacy</a>
+        <a href="/support">Support</a>
+        <a href="/de/privacy/" class="lang-switch">&#x1F1E9;&#x1F1EA; DE</a>
+      </div>
     </div>
   </nav>
 
